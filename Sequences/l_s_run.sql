@@ -7,7 +7,7 @@ exception
     when object_not_found then
         null;
     when others then
-        dbms_output.put_line('Îøèáêà '||sqlerrm);
+        dbms_output.put_line('ÑœÑˆĞ¸Ğ±ĞºĞ° '||sqlerrm);
 end;
 /
 create sequence l_plan.l_s_run;
