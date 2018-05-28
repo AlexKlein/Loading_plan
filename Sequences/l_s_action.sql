@@ -7,7 +7,7 @@ exception
     when object_not_found then
         null;
     when others then
-        dbms_output.put_line('Œ¯Ë·Í‡ '||sqlerrm);
+        dbms_output.put_line('–û—à–∏–±–∫–∞ '||sqlerrm);
 end;
 /
 create sequence l_plan.l_s_action;
