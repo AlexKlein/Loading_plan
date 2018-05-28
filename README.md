@@ -1,2 +1,2 @@
 # LOADING_PLAN
-## automation
+## Automating Informatica PowerCenter workflow starts
