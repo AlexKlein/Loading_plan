@@ -7,7 +7,7 @@ exception
     when object_not_found then
         null;
     when others then
-        dbms_output.put_line('Ошибка '||sqlerrm);
+        dbms_output.put_line('РћС€РёР±РєР° '||sqlerrm);
 end;
 /
 create table l_plan.l_variable_value (param_id        number        not null,
@@ -19,12 +19,12 @@ create table l_plan.l_variable_value (param_id        number        not null,
                                       int_service_id  number        not null)
 tablespace l_plan;
 
-comment on table l_plan.l_variable_value is 'Значения переменных в разрезе окружения';
+comment on table l_plan.l_variable_value is 'Р—РЅР°С‡РµРЅРёСЏ РїРµСЂРµРјРµРЅРЅС‹С… РІ СЂР°Р·СЂРµР·Рµ РѕРєСЂСѓР¶РµРЅРёСЏ';
 
-comment on column l_plan.l_variable_value.param_id       is 'ID переменной';
-comment on column l_plan.l_variable_value.param_value    is 'Значение переменной';
-comment on column l_plan.l_variable_value.environment_id is 'ID среды';
-comment on column l_plan.l_variable_value.project_id     is 'ID проекта';
-comment on column l_plan.l_variable_value.db_um_id       is 'ID БД УМ';
-comment on column l_plan.l_variable_value.domain_id      is 'ID домена';
-comment on column l_plan.l_variable_value.int_service_id is 'ID интеграционного сервиса';
+comment on column l_plan.l_variable_value.param_id       is 'ID РїРµСЂРµРјРµРЅРЅРѕР№';
+comment on column l_plan.l_variable_value.param_value    is 'Р—РЅР°С‡РµРЅРёРµ РїРµСЂРµРјРµРЅРЅРѕР№';
+comment on column l_plan.l_variable_value.environment_id is 'ID СЃСЂРµРґС‹';
+comment on column l_plan.l_variable_value.project_id     is 'ID РїСЂРѕРµРєС‚Р°';
+comment on column l_plan.l_variable_value.db_um_id       is 'ID Р‘Р” РЈРњ';
+comment on column l_plan.l_variable_value.domain_id      is 'ID РґРѕРјРµРЅР°';
+comment on column l_plan.l_variable_value.int_service_id is 'ID РёРЅС‚РµРіСЂР°С†РёРѕРЅРЅРѕРіРѕ СЃРµСЂРІРёСЃР°';
