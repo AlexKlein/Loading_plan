@@ -2,7 +2,7 @@ declare
     object_not_found exception;
     pragma exception_init(object_not_found, -00942);
 begin
-    execute immediate ('drop table l_plan.l_environment');
+    execute immediate ('drop table l_plan.l_action');
 exception
     when object_not_found then
         null;
