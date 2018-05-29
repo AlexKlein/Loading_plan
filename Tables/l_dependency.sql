@@ -7,7 +7,7 @@ exception
     when object_not_found then
         null;
     when others then
-        dbms_output.put_line('Ошибка '||sqlerrm);
+        dbms_output.put_line('РћС€РёР±РєР° '||sqlerrm);
 end;
 /
 create table l_plan.l_dependency (id                number        not null,
@@ -16,12 +16,12 @@ create table l_plan.l_dependency (id                number        not null,
                                   description       varchar2(255))
 tablespace l_plan;
 
-comment on table l_plan.l_dependency is 'Перечень описанных зависимостей для действий';
+comment on table l_plan.l_dependency is 'РџРµСЂРµС‡РµРЅСЊ РѕРїРёСЃР°РЅРЅС‹С… Р·Р°РІРёСЃРёРјРѕСЃС‚РµР№ РґР»СЏ РґРµР№СЃС‚РІРёР№';
 
-comment on column l_plan.l_dependency.id               is 'ID зависимости';
-comment on column l_plan.l_dependency.type_id          is 'Тип зависимости';
-comment on column l_plan.l_dependency.dependency_ccode is 'Код зависиомсти по шаблону <XXX>_<YYY>_<ZZZ>, аналог системы событий';
-comment on column l_plan.l_dependency.description      is 'Краткое описание зависимости';
+comment on column l_plan.l_dependency.id               is 'ID Р·Р°РІРёСЃРёРјРѕСЃС‚Рё';
+comment on column l_plan.l_dependency.type_id          is 'РўРёРї Р·Р°РІРёСЃРёРјРѕСЃС‚Рё';
+comment on column l_plan.l_dependency.dependency_ccode is 'РљРѕРґ Р·Р°РІРёСЃРёРѕРјСЃС‚Рё РїРѕ С€Р°Р±Р»РѕРЅСѓ <XXX>_<YYY>_<ZZZ>, Р°РЅР°Р»РѕРі СЃРёСЃС‚РµРјС‹ СЃРѕР±С‹С‚РёР№';
+comment on column l_plan.l_dependency.description      is 'РљСЂР°С‚РєРѕРµ РѕРїРёСЃР°РЅРёРµ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё';
 
 create unique index l_plan.dependency_pk_id on l_plan.l_dependency
 (id)
