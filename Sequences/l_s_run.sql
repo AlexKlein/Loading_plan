@@ -7,7 +7,7 @@ exception
     when object_not_found then
         null;
     when others then
-        dbms_output.put_line('ќшибка '||sqlerrm);
+        dbms_output.put_line('Ошибка '||sqlerrm);
 end;
 /
 create sequence l_plan.l_s_run;
