@@ -7,7 +7,7 @@ exception
     when object_not_found then
         null;
     when others then
-        dbms_output.put_line('Ошибка '||sqlerrm);
+        dbms_output.put_line('РћС€РёР±РєР° '||sqlerrm);
 end;
 /
 create table l_plan.l_domain (id        number       not null,
@@ -17,13 +17,13 @@ create table l_plan.l_domain (id        number       not null,
                               user_pass varchar2(50))
 tablespace l_plan;
 
-comment on table l_plan.l_domain is 'Справочник Доменов';
+comment on table l_plan.l_domain is 'РЎРїСЂР°РІРѕС‡РЅРёРє Р”РѕРјРµРЅРѕРІ';
 
-comment on column l_plan.l_domain.id        is 'ID домена';
-comment on column l_plan.l_domain.ccode     is 'Буквенный код домена';
-comment on column l_plan.l_domain.name      is 'Имя домена';
-comment on column l_plan.l_domain.user_name is 'LogIn пользователя из под которого осуществляется запуск';
-comment on column l_plan.l_domain.user_pass is 'Пароль пользователя из под которого осуществляется запуск';
+comment on column l_plan.l_domain.id        is 'ID РґРѕРјРµРЅР°';
+comment on column l_plan.l_domain.ccode     is 'Р‘СѓРєРІРµРЅРЅС‹Р№ РєРѕРґ РґРѕРјРµРЅР°';
+comment on column l_plan.l_domain.name      is 'РРјСЏ РґРѕРјРµРЅР°';
+comment on column l_plan.l_domain.user_name is 'LogIn РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РёР· РїРѕРґ РєРѕС‚РѕСЂРѕРіРѕ РѕСЃСѓС‰РµСЃС‚РІР»СЏРµС‚СЃСЏ Р·Р°РїСѓСЃРє';
+comment on column l_plan.l_domain.user_pass is 'РџР°СЂРѕР»СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РёР· РїРѕРґ РєРѕС‚РѕСЂРѕРіРѕ РѕСЃСѓС‰РµСЃС‚РІР»СЏРµС‚СЃСЏ Р·Р°РїСѓСЃРє';
 
 create unique index l_plan.domain_pk_id on l_plan.l_domain
 (id)
@@ -46,10 +46,3 @@ begin
     end if;
 end;
 /
-
-insert into l_plan.l_domain (id,
-                             ccode,
-                             name) values (1,
-                                           'DOMAIN_DW_TST',
-                                           'Тестовый домен');
-commit;
