@@ -42,15 +42,3 @@ begin
     end if;
 end;
 /
-insert into l_plan.l_db_um (id,
-                            ccode,
-                            name) values (1,
-                                          'EXINFPRE',
-                                          'УМ Prelive');
-insert into l_plan.l_db_um (id,
-                            ccode,
-                            name) values (2,     
-                                          'UMRBTST2',
-                                          'УМ RBTST2');
-commit;
-/
