@@ -7,7 +7,7 @@ exception
     when object_not_found then
         null;
     when others then
-        dbms_output.put_line('Ошибка '||sqlerrm);
+        dbms_output.put_line('РћС€РёР±РєР° '||sqlerrm);
 end;
 /
 create table l_plan.l_db_um (id      number not null,
@@ -15,11 +15,11 @@ create table l_plan.l_db_um (id      number not null,
                              name    varchar2(255))
 tablespace l_plan;
 
-comment on table l_plan.l_db_um is 'Справочник БД УМ';
+comment on table l_plan.l_db_um is 'РЎРїСЂР°РІРѕС‡РЅРёРє Р‘Р” РЈРњ';
 
-comment on column l_plan.l_db_um.id      is 'ID БД';
-comment on column l_plan.l_db_um.ccode   is 'Буквенный код БД УМ';
-comment on column l_plan.l_db_um.name    is 'Наименование БД УМ';
+comment on column l_plan.l_db_um.id      is 'ID Р‘Р”';
+comment on column l_plan.l_db_um.ccode   is 'Р‘СѓРєРІРµРЅРЅС‹Р№ РєРѕРґ Р‘Р” РЈРњ';
+comment on column l_plan.l_db_um.name    is 'РќР°РёРјРµРЅРѕРІР°РЅРёРµ Р‘Р” РЈРњ';
 
 create unique index l_plan.db_um_pk_id on l_plan.l_db_um
 (id)
@@ -46,11 +46,11 @@ insert into l_plan.l_db_um (id,
                             ccode,
                             name) values (1,
                                           'EXINFPRE',
-                                          'УМ Prelive');
+                                          'РЈРњ Prelive');
 insert into l_plan.l_db_um (id,
                             ccode,
                             name) values (2,     
                                           'UMRBTST2',
-                                          'УМ RBTST2');
+                                          'РЈРњ RBTST2');
 commit;
 /
