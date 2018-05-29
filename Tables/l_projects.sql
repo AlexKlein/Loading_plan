@@ -7,7 +7,7 @@ exception
     when object_not_found then
         null;
     when others then
-        dbms_output.put_line('Ошибка '||sqlerrm);
+        dbms_output.put_line('РћС€РёР±РєР° '||sqlerrm);
 end;
 /
 create table l_plan.l_projects (id    number       not null,
@@ -15,11 +15,11 @@ create table l_plan.l_projects (id    number       not null,
                                 name  varchar2(256))
 tablespace l_plan;
 /
-comment on table l_plan.l_projects is 'Справочник проектов';
+comment on table l_plan.l_projects is 'РЎРїСЂР°РІРѕС‡РЅРёРє РїСЂРѕРµРєС‚РѕРІ';
 /
-comment on column l_plan.l_projects.id    is 'ID проекта';
-comment on column l_plan.l_projects.ccode is 'Символьный код проекта';
-comment on column l_plan.l_projects.name  is 'Наименование проекта';
+comment on column l_plan.l_projects.id    is 'ID РїСЂРѕРµРєС‚Р°';
+comment on column l_plan.l_projects.ccode is 'РЎРёРјРІРѕР»СЊРЅС‹Р№ РєРѕРґ РїСЂРѕРµРєС‚Р°';
+comment on column l_plan.l_projects.name  is 'РќР°РёРјРµРЅРѕРІР°РЅРёРµ РїСЂРѕРµРєС‚Р°';
 /
 create unique index l_plan.projects_pk_id on l_plan.l_projects
 (id)
@@ -41,32 +41,4 @@ begin
         from   l_plan.l_projects;
     end if;
 end;
-/
-insert into l_plan.l_projects (id,
-                               ccode,
-                               name) values (1,
-                                             'CORE',
-                                             'Ядро');
-insert into l_plan.l_projects (id,
-                               ccode,
-                               name) values (2,
-                                             'DMFR',
-                                             'Финансовая витрина');
-insert into l_plan.l_projects (id,
-                               ccode,
-                               name) values (3,
-                                             'DMRB',
-                                             'Витрина Розничного Бизнеса');
-insert into l_plan.l_projects (id,
-                               ccode,
-                               name) values (4,
-                                             'DMCB',
-                                             'Витрина Корпоративного Блока');
-insert into l_plan.l_projects (id,
-                               ccode,
-                               name) values (5,
-                                             'DMPR',
-                                             'Витрина Процессов');
-/
-commit;
 /
