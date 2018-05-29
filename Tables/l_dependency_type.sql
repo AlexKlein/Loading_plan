@@ -7,17 +7,17 @@ exception
     when object_not_found then
         null;
     when others then
-        dbms_output.put_line('Ошибка '||sqlerrm);
+        dbms_output.put_line('РћС€РёР±РєР° '||sqlerrm);
 end;
 /
 create table l_plan.l_dependency_type (id          number        not null,
                                        description varchar2(255))
 tablespace l_plan;
 
-comment on table l_plan.l_dependency_type is 'Перечень описанных зависимостей для действий';
+comment on table l_plan.l_dependency_type is 'РџРµСЂРµС‡РµРЅСЊ РѕРїРёСЃР°РЅРЅС‹С… Р·Р°РІРёСЃРёРјРѕСЃС‚РµР№ РґР»СЏ РґРµР№СЃС‚РІРёР№';
 
-comment on column l_plan.l_dependency_type.id          is 'ID типа зависимости';
-comment on column l_plan.l_dependency_type.description is 'Краткое описание типа зависимости';
+comment on column l_plan.l_dependency_type.id          is 'ID С‚РёРїР° Р·Р°РІРёСЃРёРјРѕСЃС‚Рё';
+comment on column l_plan.l_dependency_type.description is 'РљСЂР°С‚РєРѕРµ РѕРїРёСЃР°РЅРёРµ С‚РёРїР° Р·Р°РІРёСЃРёРјРѕСЃС‚Рё';
 
 create unique index l_plan.dependency_type_pk_id on l_plan.l_dependency_type
 (id)
@@ -43,10 +43,3 @@ begin
     
 end;
 /
-insert into l_plan.l_dependency_type (id,
-                                      description) values (0,
-                                                           'Запуск без зависимостей');
-insert into l_plan.l_dependency_type (id,
-                                      description) values (1,
-                                                           'Запуск с зависимостью завершения потока');
-commit;
