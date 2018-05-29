@@ -7,7 +7,7 @@ exception
     when object_not_found then
         null;
     when others then
-        dbms_output.put_line('Ошибка '||sqlerrm);
+        dbms_output.put_line('РћС€РёР±РєР° '||sqlerrm);
 end;
 /
 create table l_plan.l_int_service (id    number not null,
@@ -15,11 +15,11 @@ create table l_plan.l_int_service (id    number not null,
                                    name  varchar2(50))
 tablespace l_plan;
 /
-comment on table l_plan.l_int_service is 'Справочник Интеграционных сервисов';
+comment on table l_plan.l_int_service is 'РЎРїСЂР°РІРѕС‡РЅРёРє РРЅС‚РµРіСЂР°С†РёРѕРЅРЅС‹С… СЃРµСЂРІРёСЃРѕРІ';
 /
-comment on column l_plan.l_int_service.id    is 'ID Интеграционного сервиса';
-comment on column l_plan.l_int_service.ccode is 'Буквенный код сервиса';
-comment on column l_plan.l_int_service.name  is 'Название сервиса';
+comment on column l_plan.l_int_service.id    is 'ID РРЅС‚РµРіСЂР°С†РёРѕРЅРЅРѕРіРѕ СЃРµСЂРІРёСЃР°';
+comment on column l_plan.l_int_service.ccode is 'Р‘СѓРєРІРµРЅРЅС‹Р№ РєРѕРґ СЃРµСЂРІРёСЃР°';
+comment on column l_plan.l_int_service.name  is 'РќР°Р·РІР°РЅРёРµ СЃРµСЂРІРёСЃР°';
 /
 create unique index l_plan.int_service_pk_id on l_plan.l_int_service
 (id)
@@ -41,21 +41,4 @@ begin
         from   l_plan.l_int_service;
     end if;
 end;
-/
-insert into l_plan.l_int_service (id,
-                                  ccode,
-                                  name) values (1,
-                                                'INT_RB_TST1',
-                                                'Сервис теста DMRB');
-insert into l_plan.l_int_service (id,
-                                  ccode,
-                                  name) values (2,
-                                                'INT_DW_TST2',
-                                                'Сервис теста ядра');
-insert into l_plan.l_int_service (id,
-                                  ccode,
-                                  name) values (3,
-                                                'INT_EX_PRE',
-                                                'Сервис PreLive');
-commit;
 /
