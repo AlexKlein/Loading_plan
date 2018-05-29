@@ -7,7 +7,7 @@ exception
     when object_not_found then
         null;
     when others then
-        dbms_output.put_line('Ошибка '||sqlerrm);
+        dbms_output.put_line('РћС€РёР±РєР° '||sqlerrm);
 end;
 /
 create table l_plan.l_variable (id          number        not null,
@@ -15,11 +15,11 @@ create table l_plan.l_variable (id          number        not null,
                                 param_desc  varchar2(1024))
 tablespace l_plan;
 
-comment on table l_plan.l_variable is 'Справочник Переменных';
+comment on table l_plan.l_variable is 'РЎРїСЂР°РІРѕС‡РЅРёРє РџРµСЂРµРјРµРЅРЅС‹С…';
 
-comment on column l_plan.l_variable.id         is 'ID переменной';
-comment on column l_plan.l_variable.param_name is 'Переменная как в параметрах';
-comment on column l_plan.l_variable.param_desc is 'Описание переменной';
+comment on column l_plan.l_variable.id         is 'ID РїРµСЂРµРјРµРЅРЅРѕР№';
+comment on column l_plan.l_variable.param_name is 'РџРµСЂРµРјРµРЅРЅР°СЏ РєР°Рє РІ РїР°СЂР°РјРµС‚СЂР°С…';
+comment on column l_plan.l_variable.param_desc is 'РћРїРёСЃР°РЅРёРµ РїРµСЂРµРјРµРЅРЅРѕР№';
 
 create or replace trigger l_plan.tr_l_variable 
 before insert
