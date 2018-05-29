@@ -7,7 +7,7 @@ exception
     when object_not_found then
         null;
     when others then
-        dbms_output.put_line('Ошибка '||sqlerrm);
+        dbms_output.put_line('РћС€РёР±РєР° '||sqlerrm);
 end;
 /
 create table l_plan.l_loading_plan (action_id       number         not null,
@@ -20,13 +20,13 @@ create table l_plan.l_loading_plan (action_id       number         not null,
                                     run_id          number)
 tablespace l_plan;
 
-comment on table l_plan.l_loading_plan is 'План загрузки';
+comment on table l_plan.l_loading_plan is 'РџР»Р°РЅ Р·Р°РіСЂСѓР·РєРё';
 
-comment on column l_plan.l_loading_plan.action_id      is 'Действие';
-comment on column l_plan.l_loading_plan.comments       is 'Комментарий';
-comment on column l_plan.l_loading_plan.environment_id is 'ID среды';
-comment on column l_plan.l_loading_plan.project_id     is 'ID проекта';
-comment on column l_plan.l_loading_plan.db_um_id       is 'ID БД УМ';
-comment on column l_plan.l_loading_plan.domain_id      is 'ID домена';
-comment on column l_plan.l_loading_plan.int_service_id is 'ID интеграционного сервиса';
-comment on column l_plan.l_loading_plan.run_id         is 'ID взятого в работу плана';
+comment on column l_plan.l_loading_plan.action_id      is 'Р”РµР№СЃС‚РІРёРµ';
+comment on column l_plan.l_loading_plan.comments       is 'РљРѕРјРјРµРЅС‚Р°СЂРёР№';
+comment on column l_plan.l_loading_plan.environment_id is 'ID СЃСЂРµРґС‹';
+comment on column l_plan.l_loading_plan.project_id     is 'ID РїСЂРѕРµРєС‚Р°';
+comment on column l_plan.l_loading_plan.db_um_id       is 'ID Р‘Р” РЈРњ';
+comment on column l_plan.l_loading_plan.domain_id      is 'ID РґРѕРјРµРЅР°';
+comment on column l_plan.l_loading_plan.int_service_id is 'ID РёРЅС‚РµРіСЂР°С†РёРѕРЅРЅРѕРіРѕ СЃРµСЂРІРёСЃР°';
+comment on column l_plan.l_loading_plan.run_id         is 'ID РІР·СЏС‚РѕРіРѕ РІ СЂР°Р±РѕС‚Сѓ РїР»Р°РЅР°';
