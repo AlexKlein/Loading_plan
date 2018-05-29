@@ -7,7 +7,7 @@ exception
     when object_not_found then
         null;
     when others then
-        dbms_output.put_line('Ошибка '||sqlerrm);
+        dbms_output.put_line('РћС€РёР±РєР° '||sqlerrm);
 end;
 /
 create table l_plan.l_dependency_subscriber (dependency_id  number        not null,
@@ -15,8 +15,8 @@ create table l_plan.l_dependency_subscriber (dependency_id  number        not nu
                                              description    varchar2(255))
 tablespace l_plan;
 
-comment on table l_plan.l_dependency_subscriber is 'Подписка действия на пререквизит зависимости';
+comment on table l_plan.l_dependency_subscriber is 'РџРѕРґРїРёСЃРєР° РґРµР№СЃС‚РІРёСЏ РЅР° РїСЂРµСЂРµРєРІРёР·РёС‚ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё';
 
-comment on column l_plan.l_dependency_subscriber.dependency_id is 'ID зависимости';
-comment on column l_plan.l_dependency_subscriber.action_id     is 'ID действия';
-comment on column l_plan.l_dependency_subscriber.description   is 'Краткое описание пререквизита';
+comment on column l_plan.l_dependency_subscriber.dependency_id is 'ID Р·Р°РІРёСЃРёРјРѕСЃС‚Рё';
+comment on column l_plan.l_dependency_subscriber.action_id     is 'ID РґРµР№СЃС‚РІРёСЏ';
+comment on column l_plan.l_dependency_subscriber.description   is 'РљСЂР°С‚РєРѕРµ РѕРїРёСЃР°РЅРёРµ РїСЂРµСЂРµРєРІРёР·РёС‚Р°';
