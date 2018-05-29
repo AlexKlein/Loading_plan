@@ -7,7 +7,7 @@ exception
     when object_not_found then
         null;
     when others then
-        dbms_output.put_line('Ошибка '||sqlerrm);
+        dbms_output.put_line('РћС€РёР±РєР° '||sqlerrm);
 end;
 /
 create table l_plan.l_action (id            number        not null,
@@ -16,12 +16,12 @@ create table l_plan.l_action (id            number        not null,
                               name         varchar2(255) not null)
 tablespace l_plan;
 
-comment on table l_plan.l_action is 'Перечень описанных действия для составления плана';
+comment on table l_plan.l_action is 'РџРµСЂРµС‡РµРЅСЊ РѕРїРёСЃР°РЅРЅС‹С… РґРµР№СЃС‚РІРёСЏ РґР»СЏ СЃРѕСЃС‚Р°РІР»РµРЅРёСЏ РїР»Р°РЅР°';
 
-comment on column l_plan.l_action.id           is 'ID действия';
-comment on column l_plan.l_action.parameter_uk is 'UK SQL скрипта параметра';
-comment on column l_plan.l_action.workflow_uk  is 'UK запускаемого потока';
-comment on column l_plan.l_action.name         is 'Краткое наименование действия';
+comment on column l_plan.l_action.id           is 'ID РґРµР№СЃС‚РІРёСЏ';
+comment on column l_plan.l_action.parameter_uk is 'UK SQL СЃРєСЂРёРїС‚Р° РїР°СЂР°РјРµС‚СЂР°';
+comment on column l_plan.l_action.workflow_uk  is 'UK Р·Р°РїСѓСЃРєР°РµРјРѕРіРѕ РїРѕС‚РѕРєР°';
+comment on column l_plan.l_action.name         is 'РљСЂР°С‚РєРѕРµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ РґРµР№СЃС‚РІРёСЏ';
 
 create unique index l_plan.action_pk_id on l_plan.l_action
 (id)
