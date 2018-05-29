@@ -7,7 +7,7 @@ exception
     when object_not_found then
         null;
     when others then
-        dbms_output.put_line('Ошибка '||sqlerrm);
+        dbms_output.put_line('РћС€РёР±РєР° '||sqlerrm);
 end;
 /
 create table l_plan.l_environment (id    number not null,
@@ -15,11 +15,11 @@ create table l_plan.l_environment (id    number not null,
                                    name  varchar2(256))
 tablespace l_plan;
 /
-comment on table l_plan.l_environment is 'Справочник сред';
+comment on table l_plan.l_environment is 'РЎРїСЂР°РІРѕС‡РЅРёРє СЃСЂРµРґ';
 /
-comment on column l_plan.l_environment.id    is 'ID среды';
-comment on column l_plan.l_environment.ccode is 'Буквенный код среды';
-comment on column l_plan.l_environment.name  is 'Наименование среды';
+comment on column l_plan.l_environment.id    is 'ID СЃСЂРµРґС‹';
+comment on column l_plan.l_environment.ccode is 'Р‘СѓРєРІРµРЅРЅС‹Р№ РєРѕРґ СЃСЂРµРґС‹';
+comment on column l_plan.l_environment.name  is 'РќР°РёРјРµРЅРѕРІР°РЅРёРµ СЃСЂРµРґС‹';
 /
 create unique index l_plan.environment_pk_id on l_plan.l_environment
 (id)
@@ -41,27 +41,4 @@ begin
         from   l_plan.l_environment;
     end if;
 end;
-/
-insert into l_plan.l_environment (id,
-                                  ccode,
-                                  name) values (1,
-                                                'DEV',
-                                                'Среда разработки');
-insert into l_plan.l_environment (id,
-                                  ccode,
-                                  name) values (2,
-                                                'TST',
-                                                'Среда тестирования');
-insert into l_plan.l_environment (id,
-                                  ccode,
-                                  name) values (3,
-                                                'PRE',
-                                                'Среда PreLive');
-insert into l_plan.l_environment (id,
-                                  ccode,
-                                  name) values (4,
-                                                'PROD',
-                                                'Среда Production');
-/
-commit;
 /
