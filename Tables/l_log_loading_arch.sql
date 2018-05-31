@@ -25,7 +25,7 @@ create table l_plan.l_log_loading_arch (time_stamp      timestamp      default s
                                         workflow_end    date)
 tablespace l_plan;
 
-comment on table l_plan.l_log_loading_arch is 'Логирование действий по плану загрузки';
+comment on table l_plan.l_log_loading_arch is 'Архивный лог действий по плану загрузки';
 
 comment on column l_plan.l_log_loading_arch.time_stamp      is 'Дата и время действия';
 comment on column l_plan.l_log_loading_arch.project_id      is 'ID проекта';
