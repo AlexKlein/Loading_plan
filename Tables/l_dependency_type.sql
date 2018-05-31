@@ -14,7 +14,7 @@ create table l_plan.l_dependency_type (id          number        not null,
                                        description varchar2(255))
 tablespace l_plan;
 
-comment on table l_plan.l_dependency_type is 'Перечень описанных зависимостей для действий';
+comment on table l_plan.l_dependency_type is 'Типы зависимостей';
 
 comment on column l_plan.l_dependency_type.id          is 'ID типа зависимости';
 comment on column l_plan.l_dependency_type.description is 'Краткое описание типа зависимости';
@@ -43,3 +43,10 @@ begin
     
 end;
 /
+insert into l_plan.l_dependency_type (id,
+                                      description) values (0,
+                                                           'Запуск без зависимостей');
+insert into l_plan.l_dependency_type (id,
+                                      description) values (1,
+                                                           'Запуск с зависимостью завершения потока');
+commit;
