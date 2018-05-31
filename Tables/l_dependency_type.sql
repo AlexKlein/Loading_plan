@@ -43,10 +43,3 @@ begin
     
 end;
 /
-insert into l_plan.l_dependency_type (id,
-                                      description) values (0,
-                                                           'Запуск без зависимостей');
-insert into l_plan.l_dependency_type (id,
-                                      description) values (1,
-                                                           'Запуск с зависимостью завершения потока');
-commit;
