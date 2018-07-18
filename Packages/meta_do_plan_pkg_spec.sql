@@ -6,12 +6,12 @@ exception
 end;
 /
 create or replace package l_plan.meta_do_plan_pkg
-/******************************* HISTORY *******************************************\
+/******************************* ALFA HISTORY *******************************************\
 Дата        Автор            ID       Описание
 ----------  ---------------  -------- ----------------------------------------------------
 08.09.2017  Клейн А.М.      [000000]  Создание пакета.
 20,04,2018  Клейн А.М.      [000000]  Измененеие выполнения плана, создание новых обхектов
-\******************************* HISTORY *******************************************/
+\******************************* ALFA HISTORY *******************************************/
 is
     -- переменные
     vCurrentRunID    number;         -- текущий план для выполнения
@@ -25,9 +25,11 @@ is
     procedure finish_plan;
     procedure make_arch_logs;
     procedure make_arch_fall(pRunID           number,
-                             pActionID        number);
+                             pActionID        number,
+                             pUserName        varchar2);
     procedure make_arch_run (pRunID           number,
-                             pActionID        number);
+                             pActionID        number,
+                             pUserName        varchar2);
     procedure make_log      (pMsg             varchar2);
     procedure get_workflow  (pWorkflowUK  in  number,
                              pFolder      out varchar2,
@@ -53,11 +55,14 @@ is
                              pProjectID       number,
                              pDbUmID          number,
                              pDomainID        number,
-                             pIntServiceID    number);
-    procedure do_plan       (pUserName        varchar2 default 'ETL_USER');    
+                             pIntServiceID    number,
+                             pUserName        varchar2);
+    procedure do_plan;    
     
     -- функции
-    function get_parameter  (pParameterUK number) return varchar2;
+    function get_parameter  (pParameterUK     number)   return varchar2;
+    function check_param    (pParamCode       varchar2,
+                             pEnvironmentID   number)   return varchar2;
     
 end meta_do_plan_pkg;
 /
