@@ -14,7 +14,7 @@ create table l_plan.i_ipc_relation (domain_id       number not null,
                                     int_service_id  number not null)
 tablespace l_plan;
 
-comment on table l_plan.i_ipc_relation is '—в¤зь доменов и интеграционных сервисов';
+comment on table l_plan.i_ipc_relation is 'Связь доменов и интеграционных сервисов';
 
 comment on column l_plan.i_ipc_relation.domain_id      is 'ID домена';
 comment on column l_plan.i_ipc_relation.int_service_id is 'ID интеграционного сервиса';
