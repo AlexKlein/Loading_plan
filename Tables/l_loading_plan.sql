@@ -17,7 +17,8 @@ create table l_plan.l_loading_plan (action_id       number         not null,
                                     db_um_id        number         not null,
                                     domain_id       number         not null,
                                     int_service_id  number         not null,
-                                    run_id          number)
+                                    run_id          number,
+                                    user_name       varchar2(255))
 tablespace l_plan;
 
 comment on table l_plan.l_loading_plan is 'План загрузки';
@@ -30,3 +31,5 @@ comment on column l_plan.l_loading_plan.db_um_id       is 'ID БД УМ';
 comment on column l_plan.l_loading_plan.domain_id      is 'ID домена';
 comment on column l_plan.l_loading_plan.int_service_id is 'ID интеграционного сервиса';
 comment on column l_plan.l_loading_plan.run_id         is 'ID взятого в работу плана';
+comment on column l_plan.l_loading_plan.user_name      is 'Пользователь, запустивший план';
+/
