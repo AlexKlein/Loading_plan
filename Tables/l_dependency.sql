@@ -13,7 +13,8 @@ end;
 create table l_plan.l_dependency (id                number        not null,
                                   type_id           number        not null,
                                   dependency_ccode  varchar2(255),
-                                  description       varchar2(255))
+                                  description       varchar2(255),
+								  environment_id    number        not null)
 tablespace l_plan;
 
 comment on table l_plan.l_dependency is 'Перечень описанных зависимостей для действий';
@@ -22,6 +23,7 @@ comment on column l_plan.l_dependency.id               is 'ID зависимос
 comment on column l_plan.l_dependency.type_id          is 'Тип зависимости';
 comment on column l_plan.l_dependency.dependency_ccode is 'Код зависиомсти по шаблону <XXX>_<YYY>_<ZZZ>, аналог системы событий';
 comment on column l_plan.l_dependency.description      is 'Краткое описание зависимости';
+comment on column l_plan.l_dependency.environment_id   is 'ID среды';
 
 create unique index l_plan.dependency_pk_id on l_plan.l_dependency
 (id)
