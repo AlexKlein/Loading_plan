@@ -110,7 +110,8 @@ is
 
 -- процедура ручного архивирования лога падения
     procedure make_arch_fall (pRunID    number,
-                              pActionID number)
+                              pActionID number,
+                              pUserName varchar2)
         is
     begin
         -- перегрузка логов в архив
@@ -127,20 +128,36 @@ is
                                                workflow_run_id,
                                                workflow_start,
                                                workflow_end)
-        select time_stamp,
+        select case
+                   when strType = 'origin' then
+                       time_stamp
+                   else
+                       systimestamp
+               end as time_stamp,
                project_id,
                environment_id,
                db_um_id,
                domain_id,
                int_service_id,
                action_desc,
-               user_name,
+               case
+                   when strType = 'origin' then
+                       user_name
+                   else
+                       pUserName
+               end as user_name,
                action_id,
                run_id,
                workflow_run_id,
                workflow_start,
                workflow_end
         from   l_plan.l_log_loading
+        inner join (select 'origin' as strType
+                    from   dual
+                    union all
+                    select 'clone' as strType
+                    from   dual) dummy
+                on 1 = 1 
         where  action_desc like 'Падение плана%' and
                action_id = pActionID and
                run_id    = pRunID;
@@ -168,7 +185,8 @@ is
 
 -- процедура ручного архивирования лога выполняемых действий
     procedure make_arch_run (pRunID    number,
-                             pActionID number)
+                             pActionID number,
+                             pUserName varchar2)
         is
     begin
         -- перегрузка логов в архив
@@ -185,20 +203,36 @@ is
                                                workflow_run_id,
                                                workflow_start,
                                                workflow_end)
-        select time_stamp,
+        select case
+                   when strType = 'origin' then
+                       time_stamp
+                   else
+                       systimestamp
+               end as time_stamp,
                project_id,
                environment_id,
                db_um_id,
                domain_id,
                int_service_id,
                action_desc,
-               user_name,
+               case
+                   when strType = 'origin' then
+                       user_name
+                   else
+                       pUserName
+               end as user_name,
                action_id,
                run_id,
                workflow_run_id,
                workflow_start,
                workflow_end
         from   l_plan.l_log_loading
+        inner join (select 'origin' as strType
+                    from   dual
+                    union all
+                    select 'clone' as strType
+                    from   dual) dummy
+                on 1 = 1 
         where  action_desc like 'Выполнение действия' and
                action_id = pActionID and
                run_id    = pRunID;
@@ -358,7 +392,8 @@ is
                  sub.dependency_ccode
         order by nvl(sub.type_id,0);
                      
-        vFlag varchar2(5);           -- флаг разрешения запуска
+        vFlag  varchar2(5);           -- флаг разрешения запуска
+        vCheck varchar2(5);           -- флаг записи проверки лога
         
         type CurTyp is ref cursor;   -- тип курсор для динамического SQL
         cCursorSubs CurTyp;          -- курсор для проверки подписки
@@ -367,22 +402,30 @@ is
         
     begin
         
+        -- заполнение флага записи проверки лога
+        vCheck := 'N';
+        
         -- выбираем подписки зависимостей действия
         for l in cSubS(pRunID,
                        pActionID) loop
                 
             -- проверка на запуск пункта плана
-            if l.existing_flag = 'Y' then
+            if l.existing_flag = 'Y' and
+               vCheck = 'N' then
                 -- установка флага запрета
                 if pLogMsg is null then 
                     -- листинг проверок пустой
                     pLogMsg := 'Записи по этому действию есть в логе'||chr(10)||
-                               'Запуск ****запрещен****'; 
+                               'Запуск ****запрещен****';
+                    -- проверка записана
+                    vCheck := 'Y';
                 else 
                     -- в листинге проверок уже есть записи
                     pLogMsg := pLogMsg||chr(10)||chr(10)||chr(10)||
                                'Записи по этому действию есть в логе'||chr(10)||
                                'Запуск ****запрещен****';
+                    -- проверка записана
+                    vCheck := 'Y';
                 end if;
                 
             end if;
@@ -521,7 +564,8 @@ is
                     '       from   l_plan.l_dependency_subscriber sub '||chr(10)||
                     '       inner join l_plan.l_dependency dep '||chr(10)||
                     '               on sub.dependency_id = dep.id '||chr(10)||
-                    '       where  sub.action_id = '||pActionID||')';
+                    '       where  sub.action_id = '||pActionID||' and '||chr(10)||
+                    '              dep.type_id   = '||l.type_id||')';
                         
                 -- запуск запроса к подписка
                 open cCursorSubs for cCursorTxt;
@@ -858,7 +902,8 @@ is
                             pProjectID     number,
                             pDbUmID        number,
                             pDomainID      number,
-                            pIntServiceID  number)
+                            pIntServiceID  number,
+                            pUserName      varchar2)
     is
         vRun_ID number;  -- номер плана
     begin
@@ -868,7 +913,8 @@ is
     
         -- установка уникального ID плана для запуска потоком
         update l_plan.l_loading_plan
-        set    run_id = vRun_ID
+        set    run_id    = vRun_ID,
+               user_name = pUserName
         where  environment_id = pEnvironmentID and
                project_id     = pProjectID     and
                db_um_id       = pDbUmID        and
@@ -887,7 +933,7 @@ is
     end prepare_plan;
     
 -- процедура запуска плана загрузок
-    procedure do_plan (pUserName varchar2 default 'ETL_USER')
+    procedure do_plan
     is
         -- курсор последовательных действий плана
         cursor cToDoList 
@@ -901,7 +947,8 @@ is
                lp.project_id,
                lp.db_um_id,
                lp.domain_id,
-               lp.int_service_id
+               lp.int_service_id,
+               lp.user_name
         from   l_plan.l_action act
         inner join l_plan.l_loading_plan lp
                 on lp.action_id = act.id
@@ -1000,7 +1047,7 @@ is
             -- установка переменных запуска 
             vCurrentRunID    := r.run_id;
             vCurrentActionID := r.action_id;
-            vUserName        := pUserName;
+            vUserName        := r.user_name;
             
             -- сбор кодов параметров запуска
             select ccode,
@@ -1186,5 +1233,55 @@ is
             
     end get_parameter;
 
+-- функция проверки параметра
+    function check_param (pParamCode     varchar2,
+                          pEnvironmentID number) return varchar2
+    as
+        vCursor number;
+        vSQL    varchar2(4000);  -- текст параметра
+    begin
+        -- замена параметра db_link на заданный
+        vSQL := replace(pParamCode,'*DB_UM*','EXINFPRE');
+                                    
+        -- замена всех параметров
+        for i in (select var.param_name,
+                         varv.param_value 
+                  from   l_plan.l_variable_value varv
+                  inner join l_plan.l_variable   var
+                          on varv.param_id = var.id
+                  where  environment_id = pEnvironmentID
+                  order by var.param_name) loop
+                                                  
+            if vSQL like '%*'||i.param_name||'*%' then
+                                            
+                vSQL := replace(vSQL,'*'||i.param_name||'*',i.param_value);
+                                            
+            end if;
+                                        
+        end loop;
+                                
+        -- проверка наличия параметра
+        if vSQL is not null then
+                                    
+            vCursor := dbms_sql.open_cursor;
+            execute immediate 'alter session set cursor_sharing=force';
+            dbms_sql.parse( vCursor, vSQL, dbms_sql.native );
+            execute immediate 'alter session set cursor_sharing=exact';
+                                    
+        end if;
+    
+        return null;
+    
+    exception
+           when others then
+               my_exception;
+               execute immediate 'alter session set cursor_sharing=exact';
+               dbms_sql.close_cursor(vCursor);
+               return 'Ваш PL/SQL код содержит ошибки'||chr(10)||
+                      dbms_utility.format_error_stack||
+                      dbms_utility.format_error_backtrace();
+               
+    end check_param;
+    
 end meta_do_plan_pkg;
 /
