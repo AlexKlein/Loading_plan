@@ -10,16 +10,18 @@ exception
         dbms_output.put_line('Ошибка '||sqlerrm);
 end;
 /
-create table l_plan.l_parameter (uk         number         not null,
-                                 param_name varchar2(255),
-                                 param_desc varchar2(4000) not null)
+create table l_plan.l_parameter (uk             number         not null,
+                                 param_name     varchar2(255),
+                                 param_desc     varchar2(4000) not null,
+                                 environment_id number         not null)
 tablespace l_plan;
 
 comment on table l_plan.l_parameter is 'Справочник параметров';
 
-comment on column l_plan.l_parameter.uk         is 'UK параметра';
-comment on column l_plan.l_parameter.param_name is 'Наименование параметра';
-comment on column l_plan.l_parameter.param_desc is 'Скрипт параметра';
+comment on column l_plan.l_parameter.uk             is 'UK параметра';
+comment on column l_plan.l_parameter.param_name     is 'Наименование параметра';
+comment on column l_plan.l_parameter.param_desc     is 'Скрипт параметра';
+comment on column l_plan.l_parameter.environment_id is 'ID Среды';
 
 create unique index l_plan.parameter_pk_uk on l_plan.l_parameter
 (uk)
