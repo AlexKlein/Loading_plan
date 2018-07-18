@@ -7,17 +7,17 @@ exception
     when object_not_found then
         null;
     when others then
-        dbms_output.put_line('Ошибка '||sqlerrm);
+        dbms_output.put_line('СњС€РёР±РєР° '||sqlerrm);
 end;
 /
 create table l_plan.i_ipc_relation (domain_id       number not null,
                                     int_service_id  number not null)
 tablespace l_plan;
 
-comment on table l_plan.i_ipc_relation is 'Связь доменов и интеграционных сервисов';
+comment on table l_plan.i_ipc_relation is 'вЂ”РІВ¤Р·СЊ РґРѕРјРµРЅРѕРІ Рё РёРЅС‚РµРіСЂР°С†РёРѕРЅРЅС‹С… СЃРµСЂРІРёСЃРѕРІ';
 
-comment on column l_plan.i_ipc_relation.domain_id      is 'ID домена';
-comment on column l_plan.i_ipc_relation.int_service_id is 'ID интеграционного сервиса';
+comment on column l_plan.i_ipc_relation.domain_id      is 'ID РґРѕРјРµРЅР°';
+comment on column l_plan.i_ipc_relation.int_service_id is 'ID РёРЅС‚РµРіСЂР°С†РёРѕРЅРЅРѕРіРѕ СЃРµСЂРІРёСЃР°';
 
 create unique index l_plan.i_ipc_relation_pk on l_plan.i_ipc_relation
 (domain_id,
