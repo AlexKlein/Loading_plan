@@ -10,18 +10,20 @@ exception
         dbms_output.put_line('Ошибка '||sqlerrm);
 end;
 /
-create table l_plan.l_action (id            number        not null,
-                              parameter_uk  number,
-                              workflow_uk   number,
-                              name         varchar2(255) not null)
+create table l_plan.l_action (id             number        not null,
+                              parameter_uk   number,
+                              workflow_uk    number,
+                              name           varchar2(255) not null,
+                              environment_id number        not null)
 tablespace l_plan;
 
 comment on table l_plan.l_action is 'Перечень описанных действия для составления плана';
 
-comment on column l_plan.l_action.id           is 'ID действия';
-comment on column l_plan.l_action.parameter_uk is 'UK SQL скрипта параметра';
-comment on column l_plan.l_action.workflow_uk  is 'UK запускаемого потока';
-comment on column l_plan.l_action.name         is 'Краткое наименование действия';
+comment on column l_plan.l_action.id             is 'ID действия';
+comment on column l_plan.l_action.parameter_uk   is 'UK SQL скрипта параметра';
+comment on column l_plan.l_action.workflow_uk    is 'UK запускаемого потока';
+comment on column l_plan.l_action.name           is 'Краткое наименование действия';
+comment on column l_plan.l_action.environment_id is 'ID Среды';
 
 create unique index l_plan.action_pk_id on l_plan.l_action
 (id)
