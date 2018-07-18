@@ -7,19 +7,20 @@ exception
     when object_not_found then
         null;
     when others then
-        dbms_output.put_line('Ошибка '||sqlerrm);
+        dbms_output.put_line('РћС€РёР±РєР° '||sqlerrm);
 end;
 /
 create table l_plan.i_landscape_relation (domain_id    number not null,
                                           landscape_id number not null)
 tablespace l_plan;
 
-comment on table l_plan.i_landscape_relation is 'Связь доменов и ландшафтов';
+comment on table l_plan.i_landscape_relation is 'РЎРІСЏР·СЊ РґРѕРјРµРЅРѕРІ Рё Р»Р°РЅРґС€Р°С„С‚РѕРІ';
 
-comment on column l_plan.i_landscape_relation.domain_id    is 'ID домена';
-comment on column l_plan.i_landscape_relation.landscape_id is 'ID БД УМ';
+comment on column l_plan.i_landscape_relation.domain_id    is 'ID РґРѕРјРµРЅР°';
+comment on column l_plan.i_landscape_relation.landscape_id is 'ID Р‘Р” РЈРњ';
 
 create unique index l_plan.i_landscape_relation_pk on l_plan.i_landscape_relation
 (domain_id,
  landscape_id)
 tablespace l_plan;
+/
