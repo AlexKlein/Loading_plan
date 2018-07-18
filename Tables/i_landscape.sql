@@ -7,7 +7,7 @@ exception
     when object_not_found then
         null;
     when others then
-        dbms_output.put_line('Ошибка '||sqlerrm);
+        dbms_output.put_line('РћС€РёР±РєР° '||sqlerrm);
 end;
 /
 create table l_plan.i_landscape (id    number not null,
@@ -15,11 +15,11 @@ create table l_plan.i_landscape (id    number not null,
                                  name  varchar2(256))
 tablespace l_plan;
 
-comment on table l_plan.i_landscape is 'Справочник ландшафтов';
+comment on table l_plan.i_landscape is 'РЎРїСЂР°РІРѕС‡РЅРёРє Р»Р°РЅРґС€Р°С„С‚РѕРІ';
 
-comment on column l_plan.i_landscape.id    is 'ID ландшафта';
-comment on column l_plan.i_landscape.ccode is 'Символьный код';
-comment on column l_plan.i_landscape.name  is 'Наименование ландшафта';
+comment on column l_plan.i_landscape.id    is 'ID Р»Р°РЅРґС€Р°С„С‚Р°';
+comment on column l_plan.i_landscape.ccode is 'РЎРёРјРІРѕР»СЊРЅС‹Р№ РєРѕРґ';
+comment on column l_plan.i_landscape.name  is 'РќР°РёРјРµРЅРѕРІР°РЅРёРµ Р»Р°РЅРґС€Р°С„С‚Р°';
 
 create unique index l_plan.landscape_pk_id on l_plan.i_landscape
 (id)
